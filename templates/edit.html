@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+    {% block body %}
+
+    <div class="container">    
+        
+        <form method="POST">
+            <div class="form-floating">
+                <label for="name">Name</label>
+                <input class="form-control" id="title" type="text" name="name" placeholder="name" data-sb-validations="required" value="{{task.name}}" />
+            </div>
+            <div class="form-check">
+                <label class="form-check-label" for="defaultCheck1">
+                  Completed
+                </label>
+                <input class="form-check-input" type="checkbox" name="complete">
+              </div>
+            <div class="form-floating">
+                <label for="message">Notes</label>
+                <textarea class="form-control" name="notes" style="height: 12rem" required>{{task.notes}} </textarea>
+            </div>
+            <br />
+            <!-- Submit Button-->
+            <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">update</button>
+        </form>
+    </div>
+
+    {% endblock body %}
