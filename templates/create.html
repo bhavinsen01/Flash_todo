@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+    {% block body %}
+
+    <div class="container">    
+        
+        <form method="POST">
+            <div class="form-floating">
+                <label for="name">Name</label>
+                <input class="form-control" id="title" type="text" name="name" placeholder="name" data-sb-validations="required" value="" />
+            </div>
+            <div class="form-check">
+                <label class="form-check-label" for="defaultCheck1">
+                  Completed
+                </label>
+                <input class="form-check-input" type="checkbox" name="complete">
+              </div>
+            <div class="form-floating">
+                <label for="message">Notes</label>
+                <textarea class="form-control" id="content" name="notes" placeholder="Content..." style="height: 12rem" data-sb-validations="required" ></textarea>
+            </div>
+            <br />
+            <!-- Submit Button-->
+            <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Save</button>
+        </form>
+    </div>
+
+    {% endblock body %}

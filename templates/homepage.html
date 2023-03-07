@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+
+    {% block body %}
+
+    <main role="main" class="container extra-bottom">
+      <h1 class="mt-5">TODO List</h1>
+      <p><mark>Do it now.</mark></p>
+    </main>
+    
+
+    <div class="container">    
+        
+        <!-- Button trigger modal -->
+        <div style="text-align: right;">
+        <a href="{{ url_for( 'create'  ) }}" >  <button type="button" class="btn btn-outline-info btn-sm" data-source="New Task">Add Task</button> </a>
+       
+        </div>
+    </div>
+
+    <!--Todo Table-->
+    <div class="container table-responsive">          
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="task-id">#</th>
+            <th class="task">Task Name</th>
+            <th class="status">Creation_date</th>
+            <th class="status">Completed</th>
+            <th class="status">Notes</th>
+            <th class="update">Edit</th>
+            <th class="update">Remove</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% if tasks %}
+            {% for task in tasks %}
+                <tr>
+                    <td>{{task.id}}</td>
+                    <td>{{task.name}}</td>
+                    <td>{{task.creation_date}}</td>
+                    <td>{{task.completed}}</td>
+                    <td>{{task.notes}}</td>
+                    <td><a href="{{ url_for( 'edit' ,task_id=task.id  ) }}"><button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="{{task.id}}" data-content="{{task.task}}"><i class="fa fa-pen fa-1" aria-hidden="true"></i></button></a></td>
+
+                    <td><button  class="btn btn-outline-secondary btn-sm remove" data-source="{{task.id}}" type="button"><i class="fa fa-trash fa-1" aria-hidden="true"></i></button></td>
+                </tr>
+            {% endfor %}
+        {% else %}
+        <td>No data found</td>
+        {% endif %}
+        
+        </tbody>
+    </table>
+    <div class="clearfix">
+                   <a class="btn btn-primary float-left" href="{{prev}}"> &larr; Previous</a>
+                   <a class="btn btn-primary float-right" style="float: right;" href="{{next}}">Next &rarr; </a>
+                   <br>
+                    </div>
+    </div>
+
+    {% endblock body %}
