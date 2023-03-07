@@ -43,8 +43,11 @@
                     <td>{{task.completed}}</td>
                     <td>{{task.notes}}</td>
                     <td><a href="{{ url_for( 'edit' ,task_id=task.id  ) }}"><button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="{{task.id}}" data-content="{{task.task}}"><i class="fa fa-pen fa-1" aria-hidden="true"></i></button></a></td>
-
+                    {% if current_user.is_authenticated %}
                     <td><button  class="btn btn-outline-secondary btn-sm remove" data-source="{{task.id}}" type="button"><i class="fa fa-trash fa-1" aria-hidden="true"></i></button></td>
+                    {% else %}
+                    <td><a href="{{ url_for( 'edit' ,task_id=task.id  ) }}"><button  class="btn btn-outline-secondary btn-sm" data-source="{{task.id}}" type="button"><i class="fa fa-trash fa-1" aria-hidden="true"></i></button></a></td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         {% else %}

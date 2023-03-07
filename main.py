@@ -138,7 +138,6 @@ def edit(task_id):
 @app.route("/delete/<task_id>", methods=['POST'])
 @login_required
 def delete(task_id):
-
     try:
         task = Task.objects.get_or_404(id=task_id)
         task.delete()
